@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Calculadora Básica JS</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=AR+One+Sans:wght@400;500;600;700&family=Inter:wght@100;200;300;400;500;600;700;800;900&family=Syne:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="./style.css">
+
+</head>
+<body>
+
+    <nav class="nav">
+        <h1 class="h1">Calculadora JS</h1>
+    </nav>
+
+    <div class="calculator">
+        <input type="text" id="result" readonly>
+        <div class="buttons">
+
+            <div class="row1">
+            <button onclick="appendToInput('7')">7</button>
+            <button onclick="appendToInput('8')">8</button>
+            <button onclick="appendToInput('9')">9</button>
+            <button onclick="appendOperator('+')">+</button>
+            </div>
+            
+            <div class="row1">
+            <button onclick="appendToInput('4')">4</button>
+            <button onclick="appendToInput('5')">5</button>
+            <button onclick="appendToInput('6')">6</button>
+            <button onclick="appendOperator('-')">-</button>
+            </div>
+
+            <div class="row1">
+            <button onclick="appendToInput('1')">1</button>
+            <button onclick="appendToInput('2')">2</button>
+            <button onclick="appendToInput('3')">3</button>            
+            <button onclick="appendOperator('*')">×</button>
+            </div>
+
+            <div class="row1">
+            <button onclick="appendToInput('0')">0</button>
+            <button onclick="appendOperator('/')">÷</button>
+            <button onclick="clearInput()">C</button>
+            <button onclick="calculateResult()">=</button>
+            </div>
+            
+
+        </div>
+    </div>
+    <script>
+
+        const resultElement = document.getElementById('result');
+        let currentInput = '';
+        let operator = '';
+
+        const clearInput = () => {
+            currentInput = '';
+            operator = '';
+            resultElement.value = '';
+        };
+
+        const appendToInput = (value) => {
+            currentInput += value;
+            resultElement.value = currentInput;
+        };
+
+        const appendOperator = (op) => {
+            operator = op;
+            appendToInput(operator);
+        };
+
+        const calculateResult = () => {
+            if (operator && currentInput) {
+                try {
+                    const result = eval(currentInput);
+                    resultElement.value = result;
+                    currentInput = result.toString();
+                    operator = '';
+                } catch (error) {
+                    resultElement.value = 'Error';
+                }
+            }
+        };
+
+
+    </script>
+</body>
+</html>
